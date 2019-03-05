@@ -1,0 +1,31 @@
+//Given an array nums and a value val, remove all instances of that value in-place and return the new length.
+//Do not allocate extra space for another array, you must do this by modifying the input array in-place with O(1) extra memory.
+//The order of elements can be changed. It doesn't matter what you leave beyond the new length.
+//Example 1: Given nums = [3,2,2,3], val = 3, Your function should return length = 2, with the first two elements of nums being 2.
+//It doesn't matter what you leave beyond the returned length.
+using System;
+public class Solution
+{
+    public static int RemoveElement(int[] nums, int val)
+    {
+        //get the length of the input integer array
+        int len = nums.Length;
+        //use loop to go through all the elements in the array
+        for (int i = 0; i < nums.Length; i++)
+        {
+            //once you find a element equal to the given val, subtract 1 from the length of the original array;
+            if (nums[i] == val)
+            {
+                len--;
+            }
+        }
+        //return the final length after the operation;
+        return len;
+    }
+    public static void Main()
+    {
+        int[] nums = { 0, 1, 2, 2, 3, 0, 4, 2 };
+        int val = 3;
+        Console.WriteLine(RemoveElement(nums, val));
+    }
+}
