@@ -1,0 +1,65 @@
+using System;
+using System.Diagnostics;
+class Test1
+{
+    int _a;
+    int _b;
+    int _c;
+    public void X()
+    {
+        // Change instance field values.
+        this._a++;
+        this._b++;
+        this._c++;
+    }
+}
+
+class Test2
+{
+    static int _a;
+    static int _b;
+    static int _c;
+    public void X()
+    {
+        // Change static field values.
+        _a++;
+        _b++;
+        _c++;
+    }
+}
+class Program
+{
+    const int _max = 200000000;
+    static void Main()
+    {
+        Test1 test1 = new Test1();
+        Test2 test2 = new Test2();
+
+        // Version 1: use instance fields.
+        var s1 = Stopwatch.StartNew();
+        for (int i = 0; i < _max; i++)
+        {
+            test1.X();
+            test1.X();
+            test1.X();
+            test1.X();
+            test1.X();
+        }
+        s1.Stop();
+        // Version 2: use static fields.
+        var s2 = Stopwatch.StartNew();
+        for (int i = 0; i < _max; i++)
+        {
+            test2.X();
+            test2.X();
+            test2.X();
+            test2.X();
+            test2.X();
+        }
+        s2.Stop();
+        Console.WriteLine(((double)(s1.Elapsed.TotalMilliseconds * 1000 * 1000) /
+            _max).ToString("0.00") + " ns");
+        Console.WriteLine(((double)(s2.Elapsed.TotalMilliseconds * 1000 * 1000) /
+            _max).ToString("0.00") + " ns");
+    }
+}
