@@ -1,0 +1,34 @@
+//Minimum Depth of Binary Tree
+//Given a binary tree, find its minimum depth.
+//The minimum depth is the number of nodes along the shortest path from the root node down to the nearest leaf node.
+//Note: A leaf is a node with no children.
+//Example:
+//Given binary tree[3, 9, 20, null, null, 15, 7],
+
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     public int val;
+ *     public TreeNode left;
+ *     public TreeNode right;
+ *     public TreeNode(int x) { val = x; }
+ * }
+ */
+public class Solution
+{
+    public int MinDepth(TreeNode root)
+    {
+        //if the root is null, return 0;
+        if (root == null)
+            return 0;
+        //else, return the lower value
+        if (root.left != null && root.right != null)
+            return Math.Min(this.MinDepth(root.left), this.MinDepth(root.right)) + 1;
+        else if (root.left != null)
+            //if the left branch is not null, return the depth of the left branch
+            return this.MinDepth(root.left) + 1;
+        else
+            //else return the  
+            return this.MinDepth(root.right) + 1;
+    }
+}
