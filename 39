@@ -1,0 +1,35 @@
+//Given two binary trees, write a function to check if they are the same or not.
+//Two binary trees are considered the same if they are structurally identical and the nodes have the same value.
+//Example 1:
+//Input:     1         1
+//          / \       / \
+//         2   3     2   3
+//        [1,2,3],   [1,2,3]
+//Output: true
+
+// Definition for a binary tree node.
+public class TreeNode
+{
+    public int val;
+    public TreeNode left;
+    public TreeNode right;
+    public TreeNode(int x) { val = x; }
+    public class Solution
+    {
+        public bool IsSameTree(TreeNode p, TreeNode q)
+        {
+            //condition 1, p and q are both null, means that they are the same
+            if (p == null && q == null)
+                return true;
+            //if one is null and the other is not, return not the same;
+            else if (p == null || q == null)
+                return false;
+            //if the starting values are not the same, they are not the same;
+            else if (p.val != q.val)
+                return false;
+            //else, they have same nodes on the same level, then recursion, to next level
+            else
+                return this.IsSameTree(p.left, q.left) && this.IsSameTree(p.right, q.right);
+        }
+    }
+}
