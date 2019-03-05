@@ -1,0 +1,21 @@
+//try to use LINQ to sort character arrays and select the elements greater than a specific value
+using System;
+using System.Linq;
+class Program
+{
+    static void Main()
+    {
+        //initialize an char array
+        char[] arr1 = { 'z', 'j', 'k', 'l', 'f', 'u', 'w' };
+        //using lINQ, create an new var arr2 to select all the elements in arr1
+        //sort the element in descending order
+        //use where clause to select the starting point,
+        var arr2 = from element in arr1
+                   orderby element descending
+                   where element > 'k'
+                   select element;
+        //for all elements in the new array arr2,output them
+        foreach (var element in arr2)
+            Console.WriteLine(element);
+    }
+}
