@@ -1,0 +1,39 @@
+//Convert integer into roman
+
+using System;
+//use string builder
+using System.Text;
+public class Solution
+{
+    public static string IntToRoman(int num)
+    {
+        //determine if the  given number out of range, or return empty
+        if (num < 1 || num > 3999)
+            return string.Empty;
+        //using system.text to declare a StringBuilder, which has Append method
+        StringBuilder sb = new StringBuilder();
+        int currentNumber = num;
+        //initialize two arrays, one for integers, one for roman strings
+        int[] values = new int[] { 1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1 };
+        string[] roman = new string[] { "M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I" };
+        var index = 0;
+        while (currentNumber > 0)
+        {
+            if (currentNumber >= values[index])
+            {
+                //append a char to the string
+                sb.Append(roman[index]);
+                currentNumber -= values[index];
+            }
+            else
+                index++;
+        }
+        //convert the stringbuilder to string
+        return sb.ToString();
+    }
+    public static void Main()
+    {
+        int num = 3999;
+        Console.WriteLine(IntToRoman(num));
+    }
+}
