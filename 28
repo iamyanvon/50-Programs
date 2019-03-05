@@ -1,0 +1,23 @@
+using System;
+using System.Text.RegularExpressions;
+class Program
+{
+    static void Main()
+    {
+        string value = "4 AND 5";
+
+        // Get first match.
+        Match match = Regex.Match(value, @"\d");
+        if (match.Success)
+        {
+            Console.WriteLine(match.Value);
+        }
+
+        // Get second match.
+        match = match.NextMatch();
+        if (match.Success)
+        {
+            Console.WriteLine(match.Value);
+        }
+    }
+}
