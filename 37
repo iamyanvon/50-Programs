@@ -1,0 +1,26 @@
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     public int val;
+ *     public TreeNode left;
+ *     public TreeNode right;
+ *     public TreeNode(int x) { val = x; }
+ * }
+ */
+public class Solution
+{
+    //use recursion to solve this problem
+    public TreeNode InvertTree(TreeNode root)
+    {
+        //determine the return value for condition that root==null;
+        if (root == null)
+            return null;
+        //define 2 variables for the left and right leaf.
+        var left = root.left;
+        var right = root.right;
+        //use the recursion method that keep swapping the tree branches
+        root.left = this.InvertTree(right);
+        root.right = this.InvertTree(left);
+        return root;
+    }
+}
