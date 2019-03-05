@@ -1,0 +1,40 @@
+class Program
+{
+    static void Main()
+    {
+        // Create new instance with string array.
+        Test test = new Test();
+
+        // Loop over elements with property.
+        foreach (string element in test.Elements)
+        {
+            System.Console.WriteLine(element);
+        }
+        // Get first string element.
+        System.Console.WriteLine(test[0]);
+    }
+}
+
+public class Test
+{
+    /// <summary>
+    /// String array field instance.
+    /// </summary>
+    string[] _elements = { "one", "two", "three" };
+
+    /// <summary>
+    /// String array property getter.
+    /// </summary>
+    public string[] Elements
+    {
+        get { return _elements; }
+    }
+
+    /// <summary>
+    /// String array indexer.
+    /// </summary>
+    public string this[int index]
+    {
+        get { return _elements[index]; }
+    }
+}
