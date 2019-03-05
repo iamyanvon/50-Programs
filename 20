@@ -1,0 +1,26 @@
+//excel column title;
+//given the column string in English characers, convert it to integers
+using System;
+public class Solution
+{
+    public static int TitleToNumber(string s)
+    {
+        //convert the possible lower case to upper case;
+        s=s.ToUpper();
+        //define a integer equal to the length of input string s
+        int len = s.Length;
+        //initialize the sum value;
+        int sum = 0;
+        for (int i = 0; i < len; i++)
+        {
+            //add all digits up
+            sum = sum * 26 + Convert.ToInt32(s[i] - 'A' + 1);
+        }
+        return sum;
+    }
+    public static void Main()
+    {
+        string s = "zy";
+        Console.WriteLine(TitleToNumber(s));
+    }
+}
