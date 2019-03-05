@@ -1,0 +1,22 @@
+//Reverse bits of a given 32 bits unsigned integer.
+//Example 1: Input: 00000010100101000001111010011100, Output: 00111001011110000010100101000000
+//Explanation: The input binary string 00000010100101000001111010011100 represents the unsigned integer 43261596, 
+//so return 964176192 which its binary representation is 00111001011110000010100101000000.
+using System;
+public class solution
+{    public class Solution
+    {
+        public uint reverseBits(uint n)
+        {
+            //initialize res from 0
+            uint res = 0;
+            //use a for loop to get the reverse of the bits
+            for (int i = 0; i < 32; i++)
+            {
+                var ibit = (n >> i) & 1;
+                res = (res << 1) + ibit;
+            }
+            return res;
+        }
+    }
+}
