@@ -1,0 +1,35 @@
+//HashSet method provides predictable, good performance. It uses a HashSet to store all encountered elements, 
+//so we always know if we have a duplicate at a certain point.
+//Note: This is similar to the Distinct method in its implementation. It may be slower for tiny lists than the iterative method.
+using System;
+using System.Collections.Generic;
+class Program
+{
+    public static List<string> RemoveDuplicatesSet(List<string> items)
+    {
+        //define an string list for the unique strings.
+        var result = new List<string>();
+        // Use HashSet to maintain table of duplicates encountered.
+        var set = new HashSet<string>();
+        for (int i = 0; i < items.Count; i++)
+        {
+            // If not duplicate, add to result.
+            if (!set.Contains(items[i]))
+            {
+                result.Add(items[i]);
+                // Record as a future duplicate.
+                set.Add(items[i]);
+            }
+        }
+        //use the result array as return value
+        return result;
+    }
+
+    static void Main()
+    {
+        var input = new List<string>() { "a", "b", "a", "b", "b", "b", "c" };
+        var output = RemoveDuplicatesSet(input);
+        Console.WriteLine("Input: " + string.Join(",", input));
+        Console.WriteLine("Output: " + string.Join(",", output));
+    }
+}
