@@ -1,0 +1,29 @@
+//Write a program in C# Sharp to create a function to swap the values of two integer numbers.
+//Test Data : Enter a number: 5, Enter another number: 6, Expected Output : Now the 1st number is : 6 , and the 2nd number is : 5
+
+using System;
+public class swap
+{
+    public static void interchange(ref int num1, ref int num2)
+    {
+        //use newnum as a tempory
+        int temp = num1;
+        //transfer the num2 value to num1
+        num1 = num2;
+        //then transfer the temp value, which is the ole num1 value
+        num2 = temp;
+    }
+    public static void Main()
+    {
+        int n1, n2;
+        Console.Write("\n\nFunction : To swap the values of two integer numbers :\n");
+        Console.Write("----------------------------------------------------------\n");
+        Console.Write("Enter a number: ");
+        //convert the input data into Int32 data type
+        n1 = Convert.ToInt32(Console.ReadLine());
+        Console.Write("Enter another number: ");
+        n2 = Convert.ToInt32(Console.ReadLine());
+        interchange(ref n1, ref n2);
+        Console.WriteLine("Now the 1st number is : {0} , and the 2nd number is : {1}", n1, n2);
+    }
+}
