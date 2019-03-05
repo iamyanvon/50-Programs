@@ -1,0 +1,55 @@
+//Every email consists of a local name and a domain name, separated by the @ sign.
+//For example, in alice @leetcode.com, alice is the local name, and leetcode.com is the domain name.
+//Besides lowercase letters, these emails may contain '.'s or '+'s.
+//If you add periods ('.') between some characters in the local name part of an email address, 
+//mail sent there will be forwarded to the same address without dots in the local name.
+//For example, "alice.z@leetcode.com" and "alicez@leetcode.com" forward to the same email address.  
+//(Note that this rule does not apply for domain names.)
+//If you add a plus('+') in the local name, everything after the first plus sign will be ignored.
+//This allows certain emails to be filtered, for example m.y+name @email.com will be forwarded to my@email.com.  
+//(Again, this rule does not apply for domain names.)。It is possible to use both of these rules at the same time.
+//Given a list of emails, we send one email to each address in the list.How many different addresses actually receive mails? 
+
+
+using System;
+using System.Linq;
+public class Solution
+{
+    public static void Main()
+    {
+        string[] email ={ "test.email+alex@leetcode.com",
+                          "test.e.mail+bob.cathy@leetcode.com",
+                          "testemail+david@lee.tcode.com",
+                          "testemail+david@lee.tcode.com",
+                          };
+        int num = NumUniqueEmails(email);
+        //use the for loop to return all the email addresses
+        for (int i = 0; i < email.Length; i++)
+        {
+            Console.WriteLine(email[i]);
+        }
+        //return the number of unique email addresses.
+        Console.WriteLine(num);
+    }
+    static int NumUniqueEmails(string[] emails)
+    {   
+        for (int i = 0; i < emails.Length; i++)
+        {
+            //split all email addresses into local part, which is before the @sign, and remaining part
+            string local = emails[i].Substring(0, emails[i].IndexOf("@"));
+            string rest = emails[i].Substring(emails[i].IndexOf("@"));
+            //use the Linq, if there is a plus sign in the local part, use the substring to get rid of the part after the plus sign;
+            if (local.Contains("+"))
+            {
+                local = local.Substring(0, local.IndexOf("+"));
+            }
+            //use the LINQ replace method to get rid of the . sign
+            local = local.Replace(".", "");
+            //then cancatenate the modified local part and the rest part
+            emails[i] = local + rest;
+        }
+        //use the LINQ distinct method to count uniqe email addresses;
+        int Count = emails.Distinct<string>().ToArray().Length;
+        return Count;
+    }
+}
