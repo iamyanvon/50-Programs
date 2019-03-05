@@ -1,0 +1,32 @@
+//Given a string, determine if it is a palindrome, considering only alphanumeric characters and ignoring cases.
+//Note: For the purpose of this problem, we define empty string as valid palindrome.
+//Example 1: Input: "A man, a plan, a canal: Panama" Output: trueusing System;
+using System;
+public class Solution
+{
+    public static bool IsPalindrome(string s)
+    {
+        //convert the string s to lower case;
+        s = s.ToLower();
+        //remove all spaces , and :
+        s = s.Replace(":", "");
+        s = s.Replace(",", "");
+        s = s.Replace(" ", "");
+        //determine if the string is a Palindrome
+        int num = 0;
+        for (int i = 0; i < s.Length; i++)
+        {
+            if (s[i] != s[s.Length - i - 1])
+                num++;
+        }
+        if (num != 0)
+            return false;
+        else
+            return true;
+    }
+    public static void Main()
+    {
+        string s = "Race: c,ar";
+        Console.WriteLine(IsPalindrome(s));
+    }
+}
