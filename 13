@@ -1,0 +1,54 @@
+//There is a robot starting at position(0, 0), the origin, on a 2D plane.Given a sequence of its moves, judge if this robot ends up at (0, 0) after it completes its moves.
+//The move sequence is represented by a string, and the character moves [i]
+//represents its ith move. Valid moves are R (right), L (left), U (up), and D (down). 
+//If the robot returns to the origin after it finishes all of its moves, return true. Otherwise, return false. 
+//Note: The way that the robot is "facing" is irrelevant. "R" will always make the robot move to the right once, 
+//"L" will always make it move left, etc. Also, assume that the magnitude of the robot's movement is the same for each move.
+//Example 1:Input: "UD", Output: true, Explanation: The robot moves up once, and then down once. All moves have the same magnitude, 
+//so it ended up at the origin where it started. Therefore, we return true.
+
+
+public class Solution
+{
+    public static bool JudgeCircle(string moves)
+    {
+        //initialize horizontal and vertical coordinates
+        int H = 0;
+        int V = 0;
+        //convert possible lower case letters to upper case
+        moves = moves.ToUpper();
+        //go through the string to get the sum of horizontal and vertical steps
+        for (int i = 0; i < moves.Length; i++)
+        {
+            //if there is a 'U' in the string, V=V+1;
+            if (moves[i] == 'U')
+            {
+                V++;
+            }
+            //if there is a 'D' in the string, V=V-1;
+            if (moves[i] == 'D')
+            {
+                V--;
+            }
+            //if there is a 'L' in the string, H=H-1;
+            if (moves[i] == 'L')
+            {
+                H--;
+            }
+            //if there is a 'R' in the string, H=H+1;
+            if (moves[i] == 'R')
+            {
+                H++;
+            }
+        }
+        //determine if the robot is still at origin
+        return (H == 0 && V == 0) ? true : false;
+        //bool value = (H == 0 && V == 0) ? true : false;
+        //return value;
+    }
+    static void Main()
+    {
+        string moves = "";
+        System.Console.WriteLine(JudgeCircle(moves));
+    }
+}
