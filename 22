@@ -1,0 +1,31 @@
+//Write a program in C# Sharp to create a function for the sum of two numbers.
+//Test Data : 
+//Enter a number: 15 
+//Enter another number: 16 
+//Expected Output : 
+//The sum of two numbers is : 31
+
+using System;
+public class sumup
+{
+    public static int Sum(int num1, int num2)
+    {
+        //initialize an integer as total
+        int total;
+        //add up the two input integers
+        total = num1 + num2;
+        //return the total;
+        return total;
+    }
+
+    public static void Main()
+    {
+        Console.Write("\n\nFunction to calculate the sum of two numbers :\n");
+        Console.Write("--------------------------------------------------\n");
+        Console.Write("Enter a number: ");
+        int n1 = Convert.ToInt32(Console.ReadLine());
+        Console.Write("Enter another number: ");
+        int n2 = Convert.ToInt32(Console.ReadLine());
+        Console.WriteLine("\nThe sum of two numbers is : {0} \n", Sum(n1, n2));
+    }
+}
