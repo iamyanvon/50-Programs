@@ -1,0 +1,33 @@
+//Given a string S and a character C, return an array of integers representing the shortest distance from the character C in the string.
+//Example 1: Input: S = "loveleetcode", C = 'e', Output: [3, 2, 1, 0, 1, 0, 0, 1, 2, 2, 1, 0]
+
+using System;
+public class Solution
+{
+    public int[] ShortestToChar(string S, char C)
+    {
+        //define a new array for distances
+        int[] distance = new int[S.Length];
+        for (int i = 0; i < distance.Length; i++)
+        {
+            //distance from the left, if any
+            int left = S.Substring(0, i).LastIndexOf(C);
+            //distance from the right, if any
+            int right = S.Substring(i).IndexOf(C);
+            //compare the distances and return the smaller one
+            if (left > -1 && right > -1)
+                distance[i] = Math.Min(i - left, right);
+            else if (left > -1)
+                distance[i] = i - left;
+            else
+                distance[i] = right;
+        }
+        return distance;
+    }
+    public static void Main()
+    {
+        string str = "loveleetcode";
+        char C = 'e';
+        Console.WriteLine(str, C);
+    }
+}
