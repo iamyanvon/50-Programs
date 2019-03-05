@@ -1,0 +1,24 @@
+//Given a column title as appear in an Excel sheet, return its corresponding column number.
+using System;
+using System.Text;
+public class Solution
+{
+    public static String convertToTitle(int n)
+    {
+        //use system.text, StringBuilder
+        var stringbuilder = new StringBuilder();
+        while (n > 0)
+        {
+            //insert the second char first, which is (n-1)%26+A, make sure to convert it to char
+            stringbuilder.Insert(0, (char)((n - 1) % 26 + 'A'));
+            //calculate the second digit from the right, and insert it to the StringBuilder
+            n = (n - 1) / 26;
+        }
+        return stringbuilder.ToString();
+    }
+    public static void Main()
+    {
+        int num = 53000;
+        Console.WriteLine(convertToTitle(num));
+    }
+}
