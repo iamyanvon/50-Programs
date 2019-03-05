@@ -1,0 +1,35 @@
+/**Remove all elements from a linked list of integers that have value val.
+Example Given: 1 –> 2 –> 6 –> 3 –> 4 –> 5 –> 6, val = 6, Return: 1 –> 2 –> 3 –> 4 –> 5
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     public int val;
+ *     public ListNode next;
+ *     public ListNode(int x) { val = x; }
+ * }
+ */
+public class Solution
+{
+    public ListNode RemoveElements(ListNode head, int val)
+    {
+        //define the starting point
+        var initialhead = new ListNode(-1) { next = head };
+        //set the ListNode starting point at fakehead location;
+        var start = initialhead;
+        //as long as not the end of the list
+        while (start.next != null)
+        {
+            //if the next value is equal to the given input, move the pointer to the next position
+            if (start.next.val == val)
+            {
+                start.next = start.next.next;
+            }
+            //else, connect to the current position
+            else
+            {
+                start = start.next;
+            }
+        }
+        //return the linkedlist
+        return initialhead.next;
+    }
+}
