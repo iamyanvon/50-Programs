@@ -1,0 +1,47 @@
+//Given a string containing just the characters '(', ')', '{', '}', '[' and ']', determine if the input string is valid.
+//An input string is valid if:
+//Open brackets must be closed by the same type of brackets.
+//Open brackets must be closed in the correct order.
+//Note that an empty string is also considered valid.
+public class Solution
+{
+    public bool IsValid(string s)
+    {
+        //use stack LIFO
+        Stack<Char> stack = new Stack<Char>();
+        for (int i = 0; i < s.Length; i++)
+        {
+            Console.WriteLine(s[i]);
+            //condition: if s is null, return false
+            if (s.Length == 0) return false;
+            //when s[i] is equal to '(','{''[',use stack.push to get the coresponding parts
+            if (s[i] == '(')
+            {
+                stack.Push(')');
+            }
+            else if (s[i] == '{')
+            {
+                stack.Push('}');
+            }
+            else if (s[i] == '[')
+            {
+                stack.Push(']');
+            }
+            else if (stack.Count == 0)
+                return false;
+            //use the peek method to check the element on top of the stack
+            else if (s[i] == stack.Peek())
+            {
+                //if s[i] is equal to stack top, remove it
+                stack.Pop();
+                Console.WriteLine("pop");
+            }
+            else
+                return false;
+        }
+        //finally, if the stack is null, then it's a valid parentheses 
+        if (stack.Count == 0)
+            return true;
+        return false;
+    }
+}
